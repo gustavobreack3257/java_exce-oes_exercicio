@@ -1,5 +1,9 @@
 package model.entities.exceptions;
 
-public class AccountException {
+public class AccountException extends Exception{
+	private static final long serialVersionUID = 1L;
 
+		public AccountException(String msg) {
+			super(msg);
+		}
 }

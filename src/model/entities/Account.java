@@ -1,5 +1,7 @@
 package model.entities;
 
+import model.entities.exceptions.AccountException;
+
 public class Account {
 	private Integer number;
 	private String holder;
@@ -48,7 +50,12 @@ public class Account {
 		return balance + amount;
 	}
 	
-	public Double withdraw(Double amount) {
-		return balance - amount;
+	public void withdraw(Double amount) throws AccountException{
+		if(balance <= 0.0) {
+			throw new AccountException("Saldo negativo.");
+		}
+		if(amount > withdrawLimit) {
+			throw new AccountException("Saque não permitido, excedido o limite.");
+		}
 	}
 }
